@@ -68,7 +68,7 @@ Source links and tool references are included inside the field guide.
 
 Do not upload confidential files, URLs, email, credentials, tokens, customer data, or victim-specific artifacts to public analysis services. Confirm the service's privacy, retention, licensing, and submission-visibility terms before using it in a real case.
 
-The completed example is entirely fictional. It uses reserved .example domains, .invalid email addresses, documentation IP ranges, and placeholder hashes.
+The completed example is entirely fictional. It uses reserved `.example` domains, `.invalid` email addresses, documentation IP ranges, and placeholder hashes.
 
 ## Project status
 
