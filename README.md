@@ -2,13 +2,14 @@
 
 A practical field guide for investigating major security incidents, tracking attacker activity, and writing evidence-based attribution assessments.
 
-This repository contains a reusable guide and a fictional exercise, with a link to a separate real sample-analysis case study:
+This repository contains a reusable guide and a fictional exercise, with links to separate technical investigations:
 
 | Document | Purpose |
 |---|---|
 | [Blank field guide](docs/field-guide.md) | Reusable investigation workflow, checklists, decision cards, evidence tables, and final report template |
 | [Completed tabletop example](examples/completed-tabletop-example.md) | Fictional incident showing how the guide works from initial access through reporting |
 | [ScreenConnect MSI case study](https://github.com/RedTeamMatrix/ScreenConnect-MSI-Infrastructure-Analysis) | Real sample and existing public reports: delivery host, configured relay, runtime artifacts, and evidence limits |
+| [EvilTokens-like device-code phishing investigation](https://github.com/RedTeamMatrix/Tracing-an-EvilTokens-like-device-code-phishing-service) | Microsoft/DocuSign-themed lure, confirmed phishing coordination backend, historical infrastructure, and provider-reported response outcomes; tooling-family attribution remains probable |
 
 ## What the guide covers
 
@@ -72,7 +73,7 @@ Source links and tool references are included inside the field guide.
 
 Do not upload confidential files, URLs, email, credentials, tokens, customer data, or victim-specific artifacts to public analysis services. Confirm the service's privacy, retention, licensing, and submission-visibility terms before using it in a real case.
 
-The completed tabletop example is entirely fictional. It uses reserved `.example` domains, `.invalid` email addresses, documentation IP ranges, and placeholder hashes. The ScreenConnect case study contains real historical observables and links to existing public analysis; its evidence package contains no malware binaries or victim telemetry.
+The completed tabletop example is entirely fictional. It uses reserved `.example` domains, `.invalid` email addresses, documentation IP ranges, and placeholder hashes. The linked investigations are separate public repositories with their own evidence limits. The ScreenConnect case study contains no malware binaries or victim telemetry. The EvilTokens-like investigation distinguishes a confirmed phishing backend from probable tooling-family attribution; it does not establish victim token theft or post-authentication access, and provider-reported restrictions do not prove a campaign-wide takedown.
 
 ## Project status
 
@@ -81,4 +82,3 @@ Version 1.6 adds lessons from the ScreenConnect sample-analysis case study and a
 ## Scope
 
 This material is intended for authorized defensive investigations. It is not legal advice and does not replace organizational policy, incident command, or qualified forensic judgment.
-
