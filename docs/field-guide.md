@@ -1,6 +1,6 @@
 # Major Incident Threat-Actor Tracking and Attribution Field Guide
 
-**Status:** Blank working template v1.5 - tabletop-tested; not yet approved for PDF production
+**Status:** Working template v1.6 - updated after a sample-analysis case study; retains the v1.5 tabletop baseline; not yet approved for PDF production
 
 **Audience:** Incident response, threat intelligence, threat hunting, DFIR, SOC, legal/privacy, and incident leadership
 
@@ -174,6 +174,7 @@ The phases will often overlap. Before moving on, make sure the listed records ex
 **Goal:** Work out what happened, in what order, and how far the activity spread.
 
 - [ ] Normalize timestamps to UTC while retaining source time zone, clock skew, and ingestion delay.
+- [ ] Label each timestamp by its meaning: victim event, sandbox event, sandbox submission, repository ingestion, public scan, collection, or compile metadata. Keep unknown-zone values unnormalized until the offset is established; a repository first-seen or retrieved search-result boundary is not campaign first/last activity.
 - [ ] Mark the earliest known malicious event and hunt backward for precursor activity.
 - [ ] Correlate user, host, process, network, email, identity, and cloud events.
 - [ ] Search confirmed indicators and distinctive behaviors across the full retention window.
@@ -195,6 +196,7 @@ The phases will often overlap. Before moving on, make sure the listed records ex
 
 - [ ] Test likely entry hypotheses: phishing, credential/session theft, exposed remote service, internet-facing vulnerability, web shell, third party, supply chain, removable media, insider, or unknown.
 - [ ] Test modern social-engineering paths: help-desk impersonation, MFA fatigue/request generation, adversary-in-the-middle phishing, QR phishing, device-code abuse, malicious OAuth consent, and user-directed RMM installation.
+- [ ] For user-directed execution such as ClickFix, preserve the full referral chain: search/ad or trusted-platform page, redirect/landing page, displayed instructions, copied command if available, download URL, browser download records, Zone.Identifier, initiating user, and parent/child processes. A trusted hosting domain does not validate the content; a sandbox launch command does not reconstruct the victim lure.
 - [ ] For email: preserve headers, sender/Reply-To/Return-Path, Message-ID, source infrastructure, URLs, redirects, QR codes, attachments, HTML, and delivery events.
 - [ ] For identity: examine source IP, device, session/token, MFA method/result, user agent, consent grants, app access, password/MFA changes, and impossible or atypical sequences.
 - [ ] For identity/SaaS: identify token type and audience, session creation and reuse, refresh activity, conditional-access result, device compliance, authentication strength, app/service-principal credentials, delegated/application permissions, role assignments, and cross-tenant activity.
@@ -237,6 +239,7 @@ The phases will often overlap. Before moving on, make sure the listed records ex
 - [ ] Compare naming, registration, deployment, hosting, TLS, and operational-timing patterns.
 - [ ] Label infrastructure type: dedicated, shared, compromised, cloud, VPN/proxy, Tor, CDN, sinkhole, parked, or unknown.
 - [ ] Record both supporting and contradicting relationships.
+- [ ] Separate infrastructure roles: referral/redirect, installer delivery, management portal, relay/C2, certificate validation, and sandbox infrastructure. Verify application protocol from records or traffic; TCP 443 alone does not establish HTTPS. Literal-IP or encrypted-DNS use requires network/process hunts alongside local DNS logs.
 - [ ] Require multiple independent links before claiming a cluster.
 
 **Tools:** passive DNS/provider licensed by the organization; VirusTotal; urlscan.io; Shodan; Censys; GreyNoise; SecurityTrails; RDAP/WHOIS; crt.sh; IPinfo; Spur; Cisco Talos Reputation Center; AbuseIPDB; internal DNS/proxy/NetFlow.
@@ -250,10 +253,16 @@ The phases will often overlap. Before moving on, make sure the listed records ex
 **Goal:** Pull out behavior that lasts across campaigns, and keep malware authorship separate from malware operation.
 
 - [ ] Hash and identify file type; collect metadata, imports/exports, strings, resources, signatures, debug paths, configuration, encryption, packer, and obfuscation.
+- [ ] Inspect installers as containers before execution. For MSI, correlate Property, File, Component, Directory, ServiceInstall, Registry, CustomAction, and sequence tables with cabinet contents and configuration. Extract as data; do not use installation or administrative installation as a substitute for inert extraction on an analyst workstation.
 - [ ] In an isolated environment, observe process/file/registry/network behavior, persistence, credential access, injection, C2, and payload retrieval.
 - [ ] For documents, preserve the original and create a sanitized derivative for human review; keep content disarm/reconstruction distinct from malware detonation.
 - [ ] Extract configuration, protocol, URI, user-agent, mutex, named-pipe, certificate, and sleep/jitter characteristics.
 - [ ] Compare code and configuration similarity with known samples.
+- [ ] Maintain artifact lineage for each extracted/decrypted/unpacked object: parent hash, resource/stream/offset or report reference, transformation and tool/version, output hash/size, and observed execution context. Preserve inputs, scripts, and parameters needed to reproduce the transformation; protect any recovered secrets separately.
+- [ ] Compare runtime and memory extracts with files already inside the original package before counting new stages. A sandbox's payload count is not a count of distinct malicious programs.
+- [ ] Validate significant sandbox labels against raw calls, paths, processes, registry values, and flows. Check legitimate product behavior and sandbox monitor injection, randomized paths, hooks, and launch arguments. Record instrumentation explanations as hypotheses until verified against the relevant run/version.
+- [ ] Separate signature validity, chain trust, timestamping, and revocation. Record the checker, time, online/offline revocation behavior, signer and fingerprint, and relevant rule/version. Retain disagreements between a local trust result and a reputation/YARA rule; neither alone proves operator identity or authorized deployment.
+- [ ] Make negative findings bounded: state analysis duration, OS, egress conditions, capture coverage, methods used, and unexamined artifacts. A short run, failed connection, or empty readable-string result does not rule out later actions or encrypted configuration.
 - [ ] Record operator procedures: command sequence, reconnaissance, tool order, directory and script naming, privilege escalation, remote execution, staging, exfiltration, cleanup, and security-control interference.
 - [ ] Distinguish malware developer, initial-access broker, affiliate/operator, infrastructure provider, and sponsoring organization.
 
@@ -426,6 +435,30 @@ HASH
 | Weaker signals | Detection name, packer, timestamp, icon, common import, fuzzy hash threshold, or public YARA match alone |
 | Write down | The analysis result, extracted observables, behavior map, reason for any similarity claim, handling rules, and recommended YARA or detection work |
 
+### Starting with an installer or a multi-stage payload
+
+```text
+INSTALLER / STAGE
+ ├─ Verify hash and provenance; preserve the original
+ ├─ Read container tables, streams, resources, scripts, and configuration as data
+ ├─ Connect declared paths/actions to files and execution order
+ ├─ Extract or decode each child; record transformation and input/output hashes
+ ├─ Compare extracted objects with original package contents and known components
+ ├─ Correlate isolated-run events and original endpoint telemetry
+ └─ Validate the next stage and each network role; leave unsupported edges open
+```
+
+| Check | What to record |
+|---|---|
+| Artifact identity | Exact bytes/hash/size, parent container, extraction location, and transformation method |
+| Execution evidence | Declared installer action, sandbox observation, victim process event, or inferred transition; identify which applies |
+| Side-loading lead | Loader path/signer/hash, adjacent DLL, expected import/search relationship, and actual module-load evidence; a signed loader alone does not prove a benign chain |
+| Hidden content | Resources, overlays, archives, extension/type mismatches, encrypted settings, or media-named blobs; preserve successful and unsuccessful decoding attempts |
+| False leads | Existing packaged libraries, normal installer restore points, product authentication components, sandbox instrumentation, and copied vendor detections |
+| Exit record | Stage/derivative ledger, supported chain diagram, per-stage findings, unresolved edges, and the next collection action |
+
+Use a static method before a dynamic one where it answers the question. Run suspect code only within the authorized isolated analysis environment. Do not introduce a missing stage merely because another published campaign used one.
+
 ### Starting with a URL or phishing email
 
 ```text
@@ -557,6 +590,23 @@ RMM / REMOTE ACCESS
 | Weaker signals | Installed executable, vendor domain traffic, signed binary, or normal service creation without anomalous use |
 | Write down | Whether the tool was authorized, unauthorized, or abused; the execution chain; infrastructure and identity links; where else it exists; and the detection recommendation |
 
+#### RMM connection and operator-activity evidence
+
+Record these as separate claims. Evidence for an earlier row does not establish a later row.
+
+| Claim | Minimum supporting evidence | What remains unresolved |
+|---|---|---|
+| Configured destination | Parsed configuration tied to the exact sample and launch path | Whether the software tried to connect |
+| Attempted connection | Process-associated socket/network event | Whether the peer replied |
+| Bidirectional transport | Packets or flow records with traffic in both directions and endpoint/time context | Application authentication and operator control |
+| Authenticated application session | Protocol/session or product audit evidence demonstrating authentication | Which operator actions occurred |
+| Operator activity | Remote command, transfer, session action, or attributable process chain with timestamps | Intent, authorization, scope, and actor identity still require context |
+
+State whether each observation came from the victim, an internal lab, an existing external sandbox, or an Internet scan. Multiple OS runs of one submitted sample show repeatability, not multiple incidents. A failed connection in another run must retain its time and environment instead of overriding successful traffic elsewhere.
+
+For configuration pivots, separate tenant/instance identifiers, installation-specific session GUIDs, transport certificates, code-signing certificates, and application identity public keys. Specify the exact bytes/encoding hashed for key fingerprints. Reuse can support a relationship but also follows migration, cloning, or compromise. Never publish a private key or session credential as an IOC.
+
+
 ---
 
 ## 5. Required evidence tables
@@ -596,6 +646,28 @@ RMM / REMOTE ACCESS
 | Gap / question | Why it matters | Required evidence | Collection method | Owner | Deadline | Decision affected |
 |---|---|---|---|---|---|---|
 | | | | | | | |
+
+### Artifact lineage and transformations
+
+| Artifact ID | Parent hash / evidence ID | Container location / report reference | Transformation; tool/version; parameters | Output SHA-256 / size | Execution context | Interpretation / unresolved work |
+|---|---|---|---|---|---|---|
+| | | | | | Declared / sandbox / victim / not observed | |
+
+Keep transformation scripts and protected parameter records with the case. A transcription, decompiled view, memory reconstruction, and original on-disk file are different artifacts; identify which hash belongs to which representation.
+
+### Behavior claim validation
+
+| Claim / sandbox label | Raw supporting event or artifact | Evidence context | Legitimate / instrumentation explanation tested | Contradiction or visibility limit | Supported conclusion | Next discriminating check |
+|---|---|---|---|---|---|---|
+| | | Static / external sandbox / internal lab / victim | | | | |
+
+### Analysis coverage and blocked collection
+
+| Question | Artifact / source | Method and coverage | Result | Access or visibility limit | Next action / owner | Decision affected |
+|---|---|---|---|---|---|---|
+| | | Duration, OS, egress, strings/decryption/disassembly scope, capture window | Found / not observed / unexamined / inaccessible / inconclusive | | | |
+
+This expands the intelligence-gap plan with the actual limits of each attempted analysis. Record authentication requirements, missing captures, unknown clocks, and unsuccessful decoding without converting them into negative evidence.
 
 ### Where did this claim come from?
 
@@ -730,6 +802,8 @@ Organize this section by what the evidence actually contains:
 
 - Identity, session, OAuth, service-principal, and cloud activity.
 - Malware, files, scripts, tools, and RMM activity.
+- Artifact lineage and decoding/extraction methods, supported execution transitions, and comparisons with original package contents.
+- Configured destinations, observed transport, application sessions, and operator actions as separate findings, with their evidence context.
 - Domains, IP addresses, certificates, hosting, and passive-DNS relationships.
 - Email, URLs, redirects, lure documents, and payload delivery.
 - Operator commands, sequencing, working pattern, and OPSEC mistakes.
@@ -882,6 +956,17 @@ Do not lock the layout until these questions are settled:
 - [ ] Tool access labels and links have been revalidated immediately before publication.
 - [ ] The PDF will include version, owner, classification, review date, and change history.
 
+### Before publishing a technical case study
+
+- [ ] Each major claim points to a specific artifact or event and identifies static, sandbox, scan, or victim context.
+- [ ] Chain diagrams distinguish confirmed transitions from inferred or missing links; detection labels are not promoted to behavior without validation.
+- [ ] Evidence links, relative Markdown links, companion files, hashes, and rendered diagrams have been checked.
+- [ ] Remove credentials, private keys, access tokens, victim/customer identifiers, and analyst workspace paths; publish only material within the approved sharing scope.
+- [ ] Defang suspect addresses in prose; document exact-value exceptions in machine-readable evidence. Keep benign PKI, provider/ASN context, sandbox addresses, and commodity component hashes out of unconditional blocklists.
+- [ ] Separate source event times, report ingestion, scans, collection times, and unknown-zone values; state the assessment's freshness date.
+- [ ] Credit methodological references and identify limitations without implying evidence those references did not supply.
+- [ ] Carry key uncertainty into the executive/social summary as well as the full report. Give unresolved gaps a specific collection action.
+
 ### Draft review questions
 
 1. Is this a printable field checklist, a fillable workbook, or both?
@@ -924,3 +1009,10 @@ Only standards that change what the analyst does are included:
 - [CISA KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) and [FIRST EPSS](https://www.first.org/epss/) for vulnerability context and prioritization, never as victim-compromise proof.
 
 If your organization requires ISO/IEC 27035, FIRST's full CSIRT Services Framework, VERIS, the Diamond Model, or Cyber Kill Chain, they can be mapped later. They are not built into the field checklist because they mostly repeat steps that are already here.
+
+
+### Methodology case references
+
+- [Huntress: Attackers Abuse ChatGPT Custom GPTs to Deliver RAT via ClickFix](https://www.huntress.com/blog/chatgpt-custom-gpts-clickfix-rat): reference for reconstructing a referral-to-execution chain, tracing recovered stages, correlating endpoint activity, and retaining unresolved configuration questions.
+- [ScreenConnect MSI case study](https://github.com/RedTeamMatrix/ScreenConnect-MSI-Infrastructure-Analysis): worked example of MSI-to-relay configuration, external sandbox corroboration, artifact comparison, and bounded conclusions.
+- [CAPE monitor naming](https://github.com/kevoreilly/CAPEv2/blob/master/analyzer/windows/lib/common/constants.py) and [process instrumentation](https://github.com/kevoreilly/CAPEv2/blob/master/analyzer/windows/lib/api/process.py): source references for testing sandbox-artifact explanations; check the version used in the relevant run.
