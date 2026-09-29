@@ -18,6 +18,8 @@ This repository contains a reusable guide and a fictional exercise, with a link 
 - Contextual IOC records
 - Domain, IP address, certificate, URL, file, identity, OAuth, vulnerability, and RMM pivots
 - Malware and operator-behavior analysis
+- Artifact lineage, sandbox finding validation, and explicit analysis coverage
+- Separate evidence for configured destinations, network traffic, application sessions, and operator actions
 - MITRE ATT&CK mapping
 - Victimology, motive, and working-pattern analysis
 - Competing hypotheses and confidence levels
@@ -36,6 +38,7 @@ The field guide includes focused decision cards for:
 7. Exploited-vulnerability leads
 8. Cloud identities, OAuth applications, and service principals
 9. Remote-access and RMM tools
+10. Installers and multi-stage payloads
 
 Each card explains what to establish first, which evidence to check, where specific tools fit, what counts as stronger or weaker evidence, and what to record before moving on.
 
@@ -73,7 +76,7 @@ The completed tabletop example is entirely fictional. It uses reserved `.example
 
 ## Project status
 
-The blank template has passed one end-to-end fictional tabletop test. It is ready for real-user testing and organization-specific tailoring, but it has not yet been approved for PDF production.
+Version 1.6 adds lessons from the ScreenConnect sample-analysis case study and a review of Huntress's investigation methodology. The v1.5 baseline passed one end-to-end fictional tabletop test; the new additions have not yet had a separate tabletop or victim-incident validation. It is ready for real-user testing and organization-specific tailoring, but it has not yet been approved for PDF production.
 
 ## Scope
 
