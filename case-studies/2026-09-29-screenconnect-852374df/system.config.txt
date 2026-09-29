@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+        <section name="ScreenConnect.ApplicationSettings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    </configSections>
+    <ScreenConnect.ApplicationSettings>
+        <setting name="ClientLaunchParametersConstraint" serializeAs="String">
+            <value>?h=64.112.84.195&amp;p=8041&amp;k=BgIAAACkAABSU0ExAAgAAAEAAQAxFvXKRj8beWZeB79WPJK3YAPsg4LPwTDNZD%2fJOMmQ3YX1lAx3SQ%2fwbhHKQ%2bc5Ta%2b52k9xtPOKjKMON9%2fUUrQ5h%2fpjy0s%2bRpZrAHPNCt1pMxzXMurfSeq5Z79PakMmnOwMTJ4gSK8P%2bmIUmyx4JTGq%2bxfOgkWVbuXRB0E1HHj9Pyqp6vY9l0qlGUHx9ZjJsyZIbJKoLJQWTefP8aU1hhkZfAfM0tNaZ5NWk4o2RypOb0AiAA5QmfHhQFCHMKPyLvRHkIHP4SwKX%2bW7imAk%2bk4fRtwo6VnGejfDzgO1UC1o5WRM6jp9hlVUtp7wecYzNxHzrJoU4kokxzpggV74G6C8</value>
+        </setting>
+    </ScreenConnect.ApplicationSettings>
+</configuration>

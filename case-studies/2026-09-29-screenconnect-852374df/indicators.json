@@ -1,0 +1,107 @@
+{
+  "created_utc": "2026-09-29T17:01:37.408180+00:00",
+  "case": "SC-852374df",
+  "indicators": [
+    {
+      "type": "ipv4:port",
+      "value": "64.112.84.195:8041",
+      "protocol": "tcp",
+      "role": "Configured ScreenConnect relay / suspected C2",
+      "confidence": "high for configured relay and sandbox-observed bidirectional TCP traffic",
+      "evidence": [
+        "MSI Property SERVICE_CLIENT_LAUNCH_PARAMETERS",
+        "system.config ClientLaunchParametersConstraint",
+        "https://tria.ge/260929-rhzctas1hy/behavioral1/analog?flow=41",
+        "https://tria.ge/260929-rhzctas1hy/behavioral2/analog?flow=12",
+        "CAPE runtime user.config HostToAddressMap"
+      ],
+      "runtime_connection_observed": true,
+      "runtime_observation_context": "Existing external Hatching Triage sandbox report; not victim telemetry",
+      "victim_connection_observed": false
+    },
+    {
+      "type": "url",
+      "value": "http://64.112.84.195:443/Bin/ScreenConnect.ClientSetup.msi?e=Access&y=Guest",
+      "role": "Exact-sample distribution",
+      "confidence": "high",
+      "evidence": [
+        "urlscan public search results: six records with exact SHA-256"
+      ],
+      "first_observed_in_retrieved_results": "2026-09-29T12:30:21.891Z",
+      "last_observed_in_retrieved_results": "2026-09-29T15:04:09.744Z"
+    },
+    {
+      "type": "url",
+      "value": "http://64.112.84.195:443/",
+      "role": "ScreenConnect portal; external observation",
+      "confidence": "high for recorded page",
+      "evidence": [
+        "urlscan 01a0ed40-562f-70a9-840b-ee8cb516a398 at 2026-09-29T13:00:18.979Z"
+      ]
+    },
+    {
+      "type": "sha256",
+      "value": "852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775",
+      "role": "Supplied MSI exact match",
+      "confidence": "high"
+    },
+    {
+      "type": "windows-service-name",
+      "value": "ScreenConnect Client (ba544f8cf7454a89)",
+      "role": "Configured persistent access service",
+      "confidence": "high for configuration"
+    },
+    {
+      "type": "screenconnect-instance-id",
+      "value": "ba544f8cf7454a89",
+      "role": "Instance/configuration pivot; not a victim session GUID",
+      "confidence": "high"
+    },
+    {
+      "type": "url-scheme",
+      "value": "sc-ba544f8cf7454a89",
+      "role": "Instance-specific local protocol handler",
+      "confidence": "high"
+    },
+    {
+      "type": "msi-product-code",
+      "value": "{919EA92C-1C59-BFD5-B94D-700AF73C2F8F}",
+      "role": "Installer identity",
+      "confidence": "high"
+    },
+    {
+      "type": "public-key-blob-sha256",
+      "value": "df35028007fef61d290c4507dca196e6042edf8712581f33feccc8c3d0a6b711",
+      "role": "Server identity public-key reuse pivot",
+      "confidence": "high",
+      "encoding": "CryptoAPI PUBLICKEYBLOB; decoded from URL-decoded base64 k parameter"
+    },
+    {
+      "type": "credential-provider-clsid",
+      "value": "{6FF59A85-BC37-4CD4-9651-21C89F68C1A3}",
+      "role": "Packaged ScreenConnect credential-provider collection pivot; not malicious by itself",
+      "confidence": "high for installer declaration",
+      "evidence": [
+        "MSI Property and Registry tables"
+      ],
+      "standalone_block_indicator": false
+    }
+  ],
+  "context_only": {
+    "provider": "Hyonix LLC",
+    "origin_asn": "AS931",
+    "prefix": "64.112.84.0/24",
+    "note": "Provider/ASN/subnet are context, not malicious blocklist entries. Binary vendor signatures are not actor attribution."
+  },
+  "attribution": "Operator and threat group unknown; supplied sample was described by user as malware; static RMM configuration alone does not prove unauthorized use.",
+  "updated_utc": "2026-09-29T18:22:52.045236+00:00",
+  "additional_reporting": {
+    "malwarebazaar": "https://bazaar.abuse.ch/sample/852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775/",
+    "triage": "https://tria.ge/260929-rhzctas1hy/behavioral1",
+    "evidence_file": "malwarebazaar-triage-evidence.json"
+  },
+  "additional_context": {
+    "memory_extracts": "See deeper-report-evidence.json; do not treat memory artifact hashes or suspected monitor paths as independent malicious IOCs.",
+    "runtime_config_hash": "abb9fb9d43172f64c1b93a3dcb99956687e5883a14385e3eccced3fc8cfe5af7 is sandbox-generated configuration, not a stable campaign file hash."
+  }
+}

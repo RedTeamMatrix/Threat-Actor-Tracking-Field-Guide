@@ -1,0 +1,931 @@
+{
+  "case": "SC-852374df",
+  "assessment_date_utc": "2026-09-29",
+  "scope": "Static local analysis and existing third-party reports; no victim endpoint telemetry.",
+  "sample_sha256": "852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775",
+  "size_bytes": 9957376,
+  "msi_static": {
+    "method": "MsiOpenDatabaseW read-only mode; static table and stream reads only",
+    "collection_utc": "2026-09-29T16:58:48.569667+00:00",
+    "tables": {
+      "Property": [
+        {
+          "Property": "UpgradeCode",
+          "Value": "{DB1244CB-16B0-3CAE-BA54-4F8CF7454A89}"
+        },
+        {
+          "Property": "ARPPRODUCTICON",
+          "Value": "DefaultIcon"
+        },
+        {
+          "Property": "ARPNOREPAIR",
+          "Value": "yes"
+        },
+        {
+          "Property": "ARPNOMODIFY",
+          "Value": "yes"
+        },
+        {
+          "Property": "ALLUSERS",
+          "Value": "1"
+        },
+        {
+          "Property": "Manufacturer",
+          "Value": "ScreenConnect Software"
+        },
+        {
+          "Property": "ProductCode",
+          "Value": "{919EA92C-1C59-BFD5-B94D-700AF73C2F8F}"
+        },
+        {
+          "Property": "ProductLanguage",
+          "Value": "1033"
+        },
+        {
+          "Property": "ProductName",
+          "Value": "ScreenConnect Client (ba544f8cf7454a89)"
+        },
+        {
+          "Property": "ProductVersion",
+          "Value": "25.2.4.9229"
+        },
+        {
+          "Property": "SecureCustomProperties",
+          "Value": "ARPNOMODIFY;ARPNOREPAIR;NETFRAMEWORK20;NETFRAMEWORK40CLIENT;NEW_VERSION;OLD_PRODUCT_1;OLD_PRODUCT_2;OLD_PRODUCT_3"
+        },
+        {
+          "Property": "URL_SCHEME",
+          "Value": "sc-ba544f8cf7454a89"
+        },
+        {
+          "Property": "SERVICE_NAME",
+          "Value": "ScreenConnect Client (ba544f8cf7454a89)"
+        },
+        {
+          "Property": "CREDENTIAL_PROVIDER_CLASS_ID",
+          "Value": "{6FF59A85-BC37-4CD4-9651-21C89F68C1A3}"
+        },
+        {
+          "Property": "SERVICE_CLIENT_LAUNCH_PARAMETERS",
+          "Value": "?e=Access&y=Guest&h=64.112.84.195&p=8041&k=BgIAAACkAABSU0ExAAgAAAEAAQAxFvXKRj8beWZeB79WPJK3YAPsg4LPwTDNZD%2fJOMmQ3YX1lAx3SQ%2fwbhHKQ%2bc5Ta%2b52k9xtPOKjKMON9%2fUUrQ5h%2fpjy0s%2bRpZrAHPNCt1pMxzXMurfSeq5Z79PakMmnOwMTJ4gSK8P%2bmIUmyx4JTGq%2bxfOgkWVbuXRB0E1HHj9Pyqp6vY9l0qlGUHx9ZjJsyZIbJKoLJQWTefP8aU1hhkZfAfM0tNaZ5NWk4o2RypOb0AiAA5QmfHhQFCHMKPyLvRHkIHP4SwKX%2bW7imAk%2bk4fRtwo6VnGejfDzgO1UC1o5WRM6jp9hlVUtp7wecYzNxHzrJoU4kokxzpggV74G6C8"
+        }
+      ],
+      "ServiceInstall": [
+        {
+          "ServiceInstall": "ServiceInstall",
+          "Name": "[SERVICE_NAME]",
+          "DisplayName": "",
+          "ServiceType": "16",
+          "StartType": "2",
+          "ErrorControl": "1",
+          "LoadOrderGroup": "Remote Control",
+          "Dependencies": "",
+          "StartName": "",
+          "Password": "",
+          "Arguments": "\"[SERVICE_CLIENT_LAUNCH_PARAMETERS]\"",
+          "Component_": "ServiceFilesWithService",
+          "Description": ""
+        }
+      ],
+      "Registry": [
+        {
+          "Registry": "reg239C9CCDE4AB59853602A60F6F05D51B",
+          "Root": "0",
+          "Key": "[URL_SCHEME]",
+          "Name": "URL Protocol",
+          "Value": "",
+          "Component_": "MainFiles"
+        },
+        {
+          "Registry": "regC511015E3F744DB5C5D9473BF2B6E27B",
+          "Root": "0",
+          "Key": "[URL_SCHEME]",
+          "Name": "UseOriginalUrlEncoding",
+          "Value": "#1",
+          "Component_": "MainFiles"
+        },
+        {
+          "Registry": "regED314AE69CE5D835D523FB365C82C36B",
+          "Root": "0",
+          "Key": "[URL_SCHEME]\\shell\\open\\command",
+          "Name": "",
+          "Value": "\"[INSTALLLOCATION]ScreenConnect.WindowsClient.exe\" \"%1\"",
+          "Component_": "MainFiles"
+        },
+        {
+          "Registry": "reg3831C0C36D9CE44BC3E6FAE6F161BEA8",
+          "Root": "2",
+          "Key": "System\\CurrentControlSet\\Control\\SafeBoot\\Network\\[SERVICE_NAME]",
+          "Name": "",
+          "Value": "Service",
+          "Component_": "ServiceFilesWithService"
+        },
+        {
+          "Registry": "regB33BA5DF8D6A3B0A5B5032B6CB3E561B",
+          "Root": "2",
+          "Key": "SYSTEM\\CurrentControlSet\\Control\\Lsa",
+          "Name": "Authentication Packages",
+          "Value": "[~][#ScreenConnect.WindowsAuthenticationPackage.dll]",
+          "Component_": "AuthenticationPackageFiles"
+        },
+        {
+          "Registry": "reg86A6324C5FADB6CB634CB54F9A254136",
+          "Root": "0",
+          "Key": "CLSID\\[CREDENTIAL_PROVIDER_CLASS_ID]",
+          "Name": "",
+          "Value": "[ProductName] Credential Provider",
+          "Component_": "CredentialProviderFiles"
+        },
+        {
+          "Registry": "regA0D3A6DD84118D3DB3724140CDD67EB3",
+          "Root": "0",
+          "Key": "CLSID\\[CREDENTIAL_PROVIDER_CLASS_ID]\\InprocServer32",
+          "Name": "",
+          "Value": "[#ScreenConnect.WindowsCredentialProvider.dll]",
+          "Component_": "CredentialProviderFiles"
+        },
+        {
+          "Registry": "regBE7B0E97E26F674069B85EA56F7ED91A",
+          "Root": "0",
+          "Key": "CLSID\\[CREDENTIAL_PROVIDER_CLASS_ID]\\InprocServer32",
+          "Name": "ThreadingModel",
+          "Value": "Apartment",
+          "Component_": "CredentialProviderFiles"
+        },
+        {
+          "Registry": "reg6D36DB0A1418FE132B81E493007857D7",
+          "Root": "0",
+          "Key": "CLSID\\[CREDENTIAL_PROVIDER_CLASS_ID]",
+          "Name": "-",
+          "Value": "",
+          "Component_": "CredentialProviderFiles"
+        },
+        {
+          "Registry": "regCC3768849A0489209CB6D1FE238BF1F1",
+          "Root": "2",
+          "Key": "Software\\Microsoft\\Windows\\CurrentVersion\\Authentication\\Credential Providers\\[CREDENTIAL_PROVIDER_CLASS_ID]",
+          "Name": "",
+          "Value": "[ProductName] Credential Provider",
+          "Component_": "CredentialProviderFiles"
+        },
+        {
+          "Registry": "reg685500C4A1A36BBDF1BB32EEE98CBEDE",
+          "Root": "2",
+          "Key": "Software\\Microsoft\\Windows\\CurrentVersion\\Authentication\\Credential Providers\\[CREDENTIAL_PROVIDER_CLASS_ID]",
+          "Name": "-",
+          "Value": "",
+          "Component_": "CredentialProviderFiles"
+        }
+      ],
+      "File": [
+        {
+          "File": "ScreenConnect.ClientService.dll",
+          "Component_": "MainFiles",
+          "FileName": "dbbvsztr.dll|ScreenConnect.ClientService.dll",
+          "FileSize": "68096",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "2"
+        },
+        {
+          "File": "ScreenConnect.WindowsBackstageShell.exe",
+          "Component_": "BackstageShellFiles",
+          "FileName": "gmo6xwtf.exe|ScreenConnect.WindowsBackstageShell.exe",
+          "FileSize": "61208",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "6"
+        },
+        {
+          "File": "ScreenConnect.WindowsFileManager.exe",
+          "Component_": "FileManagerFiles",
+          "FileName": "eqbfwkgi.exe|ScreenConnect.WindowsFileManager.exe",
+          "FileSize": "81688",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "11"
+        },
+        {
+          "File": "ServiceExeWithService",
+          "Component_": "ServiceFilesWithService",
+          "FileName": "rfix2t3m.exe|ScreenConnect.ClientService.exe",
+          "FileSize": "95512",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "14"
+        },
+        {
+          "File": "ServiceExeWithoutService",
+          "Component_": "ServiceFilesWithoutService",
+          "FileName": "haqxzbdm.exe|ScreenConnect.ClientService.exe",
+          "FileSize": "95512",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "13"
+        },
+        {
+          "File": "ScreenConnect.WindowsAuthenticationPackage.dll",
+          "Component_": "AuthenticationPackageFiles",
+          "FileName": "xihnzjl9.dll|ScreenConnect.WindowsAuthenticationPackage.dll",
+          "FileSize": "260168",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "5"
+        },
+        {
+          "File": "ScreenConnect.WindowsCredentialProvider.dll",
+          "Component_": "CredentialProviderFiles",
+          "FileName": "dyfhtzmg.dll|ScreenConnect.WindowsCredentialProvider.dll",
+          "FileSize": "857088",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "10"
+        },
+        {
+          "File": "ScreenConnect.WindowsClient.exe",
+          "Component_": "MainFiles",
+          "FileName": "b0t6oyco.exe|ScreenConnect.WindowsClient.exe",
+          "FileSize": "608024",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "8"
+        },
+        {
+          "File": "ScreenConnect.Client.dll",
+          "Component_": "MainFiles",
+          "FileName": "5aygg2n-.dll|ScreenConnect.Client.dll",
+          "FileSize": "197120",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "1"
+        },
+        {
+          "File": "ScreenConnect.Core.dll",
+          "Component_": "MainFiles",
+          "FileName": "wj8nf_3w.dll|ScreenConnect.Core.dll",
+          "FileSize": "550912",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "3"
+        },
+        {
+          "File": "ScreenConnect.Windows.dll",
+          "Component_": "MainFiles",
+          "FileName": "xilmq3ru.dll|ScreenConnect.Windows.dll",
+          "FileSize": "1729024",
+          "Version": "25.2.4.9229",
+          "Language": "0",
+          "Attributes": "512",
+          "Sequence": "4"
+        },
+        {
+          "File": "ScreenConnect.WindowsClient.exe.config",
+          "Component_": "MainFiles",
+          "FileName": "hreu-cro.con|ScreenConnect.WindowsClient.exe.config",
+          "FileSize": "266",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "9"
+        },
+        {
+          "File": "ScreenConnect.WindowsBackstageShell.exe.config",
+          "Component_": "BackstageShellFiles",
+          "FileName": "t2mskewp.con|ScreenConnect.WindowsBackstageShell.exe.config",
+          "FileSize": "266",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "7"
+        },
+        {
+          "File": "ScreenConnect.WindowsFileManager.exe.config",
+          "Component_": "FileManagerFiles",
+          "FileName": "lisvqjw4.con|ScreenConnect.WindowsFileManager.exe.config",
+          "FileSize": "266",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "12"
+        },
+        {
+          "File": "app.config",
+          "Component_": "MainFiles",
+          "FileName": "670067|app.config",
+          "FileSize": "508",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "1001"
+        },
+        {
+          "File": "Client.en-US.resources",
+          "Component_": "MainFiles",
+          "FileName": "730073|Client.en-US.resources",
+          "FileSize": "50128",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "1002"
+        },
+        {
+          "File": "Client.resources",
+          "Component_": "MainFiles",
+          "FileName": "730073|Client.resources",
+          "FileSize": "29608",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "1003"
+        },
+        {
+          "File": "system.config",
+          "Component_": "MainFiles",
+          "FileName": "670067|system.config",
+          "FileSize": "941",
+          "Version": "",
+          "Language": "",
+          "Attributes": "512",
+          "Sequence": "1004"
+        }
+      ],
+      "Component": [
+        {
+          "Component": "MainFiles",
+          "ComponentId": "{369EFF1F-987D-3F83-EDE6-8060BA1357AB}",
+          "Directory_": "INSTALLLOCATION",
+          "Attributes": "0",
+          "Condition": "NOT EXCLUDE_MAIN",
+          "KeyPath": "ScreenConnect.ClientService.dll"
+        },
+        {
+          "Component": "BackstageShellFiles",
+          "ComponentId": "{157B0FD9-C376-9E4E-F575-028C64FEF4AA}",
+          "Directory_": "INSTALLLOCATION",
+          "Attributes": "0",
+          "Condition": "NOT EXCLUDE_BACKSTAGE_SHELL",
+          "KeyPath": "ScreenConnect.WindowsBackstageShell.exe"
+        },
+        {
+          "Component": "FileManagerFiles",
+          "ComponentId": "{A2768CA4-3909-77B3-6873-3747798CE36C}",
+          "Directory_": "INSTALLLOCATION",
+          "Attributes": "0",
+          "Condition": "NOT EXCLUDE_FILE_MANAGER",
+          "KeyPath": "ScreenConnect.WindowsFileManager.exe"
+        },
+        {
+          "Component": "ServiceFilesWithService",
+          "ComponentId": "{8094ECD7-3EF0-B5C3-6D52-0DE442DC331A}",
+          "Directory_": "INSTALLLOCATION",
+          "Attributes": "0",
+          "Condition": "NOT EXCLUDE_SERVICE AND SERVICE_CLIENT_LAUNCH_PARAMETERS",
+          "KeyPath": "ServiceExeWithService"
+        },
+        {
+          "Component": "ServiceFilesWithoutService",
+          "ComponentId": "{60D34174-0542-07FE-2B03-AB8354706F62}",
+          "Directory_": "INSTALLLOCATION",
+          "Attributes": "0",
+          "Condition": "NOT EXCLUDE_SERVICE AND NOT SERVICE_CLIENT_LAUNCH_PARAMETERS",
+          "KeyPath": "ServiceExeWithoutService"
+        },
+        {
+          "Component": "AuthenticationPackageFiles",
+          "ComponentId": "{ED74E6EE-3B55-0FFB-3821-652723DF1603}",
+          "Directory_": "INSTALLLOCATION",
+          "Attributes": "256",
+          "Condition": "NOT EXCLUDE_AUTHENTICATION_PACKAGE AND SERVICE_CLIENT_LAUNCH_PARAMETERS AND %PROCESSOR_ARCHITECTURE <> \"x86\" AND VersionNT >= 601",
+          "KeyPath": "ScreenConnect.WindowsAuthenticationPackage.dll"
+        },
+        {
+          "Component": "CredentialProviderFiles",
+          "ComponentId": "{7A5A36DF-6DEE-971F-D2D0-D50CA65610BE}",
+          "Directory_": "INSTALLLOCATION",
+          "Attributes": "256",
+          "Condition": "NOT EXCLUDE_CREDENTIAL_PROVIDER AND SERVICE_CLIENT_LAUNCH_PARAMETERS AND %PROCESSOR_ARCHITECTURE <> \"x86\" AND VersionNT >= 601",
+          "KeyPath": "ScreenConnect.WindowsCredentialProvider.dll"
+        }
+      ],
+      "Directory": [
+        {
+          "Directory": "INSTALLLOCATION",
+          "Directory_Parent": "ProgramFilesFolder",
+          "DefaultDir": "290029|ScreenConnect Client (ba544f8cf7454a89)"
+        },
+        {
+          "Directory": "ProgramFilesFolder",
+          "Directory_Parent": "TARGETDIR",
+          "DefaultDir": "."
+        },
+        {
+          "Directory": "TARGETDIR",
+          "Directory_Parent": "",
+          "DefaultDir": "SourceDir"
+        }
+      ]
+    }
+  },
+  "extracted_configuration": {
+    "collected_utc": "2026-09-29T17:01:37.408180+00:00",
+    "properties": {
+      "UpgradeCode": "{DB1244CB-16B0-3CAE-BA54-4F8CF7454A89}",
+      "ARPPRODUCTICON": "DefaultIcon",
+      "ARPNOREPAIR": "yes",
+      "ARPNOMODIFY": "yes",
+      "ALLUSERS": "1",
+      "Manufacturer": "ScreenConnect Software",
+      "ProductCode": "{919EA92C-1C59-BFD5-B94D-700AF73C2F8F}",
+      "ProductLanguage": "1033",
+      "ProductName": "ScreenConnect Client (ba544f8cf7454a89)",
+      "ProductVersion": "25.2.4.9229",
+      "SecureCustomProperties": "ARPNOMODIFY;ARPNOREPAIR;NETFRAMEWORK20;NETFRAMEWORK40CLIENT;NEW_VERSION;OLD_PRODUCT_1;OLD_PRODUCT_2;OLD_PRODUCT_3",
+      "URL_SCHEME": "sc-ba544f8cf7454a89",
+      "SERVICE_NAME": "ScreenConnect Client (ba544f8cf7454a89)",
+      "CREDENTIAL_PROVIDER_CLASS_ID": "{6FF59A85-BC37-4CD4-9651-21C89F68C1A3}",
+      "SERVICE_CLIENT_LAUNCH_PARAMETERS": "?e=Access&y=Guest&h=64.112.84.195&p=8041&k=BgIAAACkAABSU0ExAAgAAAEAAQAxFvXKRj8beWZeB79WPJK3YAPsg4LPwTDNZD%2fJOMmQ3YX1lAx3SQ%2fwbhHKQ%2bc5Ta%2b52k9xtPOKjKMON9%2fUUrQ5h%2fpjy0s%2bRpZrAHPNCt1pMxzXMurfSeq5Z79PakMmnOwMTJ4gSK8P%2bmIUmyx4JTGq%2bxfOgkWVbuXRB0E1HHj9Pyqp6vY9l0qlGUHx9ZjJsyZIbJKoLJQWTefP8aU1hhkZfAfM0tNaZ5NWk4o2RypOb0AiAA5QmfHhQFCHMKPyLvRHkIHP4SwKX%2bW7imAk%2bk4fRtwo6VnGejfDzgO1UC1o5WRM6jp9hlVUtp7wecYzNxHzrJoU4kokxzpggV74G6C8"
+    },
+    "parsed_launch_parameters": {
+      "e": "Access",
+      "y": "Guest",
+      "h": "64.112.84.195",
+      "p": "8041",
+      "k": "BgIAAACkAABSU0ExAAgAAAEAAQAxFvXKRj8beWZeB79WPJK3YAPsg4LPwTDNZD/JOMmQ3YX1lAx3SQ/wbhHKQ+c5Ta+52k9xtPOKjKMON9/UUrQ5h/pjy0s+RpZrAHPNCt1pMxzXMurfSeq5Z79PakMmnOwMTJ4gSK8P+mIUmyx4JTGq+xfOgkWVbuXRB0E1HHj9Pyqp6vY9l0qlGUHx9ZjJsyZIbJKoLJQWTefP8aU1hhkZfAfM0tNaZ5NWk4o2RypOb0AiAA5QmfHhQFCHMKPyLvRHkIHP4SwKX+W7imAk+k4fRtwo6VnGejfDzgO1UC1o5WRM6jp9hlVUtp7wecYzNxHzrJoU4kokxzpggV74G6C8"
+    },
+    "system_config_constraint": "?h=64.112.84.195&p=8041&k=BgIAAACkAABSU0ExAAgAAAEAAQAxFvXKRj8beWZeB79WPJK3YAPsg4LPwTDNZD%2fJOMmQ3YX1lAx3SQ%2fwbhHKQ%2bc5Ta%2b52k9xtPOKjKMON9%2fUUrQ5h%2fpjy0s%2bRpZrAHPNCt1pMxzXMurfSeq5Z79PakMmnOwMTJ4gSK8P%2bmIUmyx4JTGq%2bxfOgkWVbuXRB0E1HHj9Pyqp6vY9l0qlGUHx9ZjJsyZIbJKoLJQWTefP8aU1hhkZfAfM0tNaZ5NWk4o2RypOb0AiAA5QmfHhQFCHMKPyLvRHkIHP4SwKX%2bW7imAk%2bk4fRtwo6VnGejfDzgO1UC1o5WRM6jp9hlVUtp7wecYzNxHzrJoU4kokxzpggV74G6C8",
+    "launch_and_constraint_match": true,
+    "server_key": {
+      "format": "CryptoAPI PUBLICKEYBLOB; decoded from URL-decoded base64 k parameter",
+      "blob_length": 276,
+      "rsa_bits": 2048,
+      "exponent": 65537,
+      "blob_sha256": "df35028007fef61d290c4507dca196e6042edf8712581f33feccc8c3d0a6b711",
+      "spki_der_sha256": "6a1f851ba65a619156c904780a17372821afe237e6def437e7dcda705e3116d1",
+      "base64": "BgIAAACkAABSU0ExAAgAAAEAAQAxFvXKRj8beWZeB79WPJK3YAPsg4LPwTDNZD/JOMmQ3YX1lAx3SQ/wbhHKQ+c5Ta+52k9xtPOKjKMON9/UUrQ5h/pjy0s+RpZrAHPNCt1pMxzXMurfSeq5Z79PakMmnOwMTJ4gSK8P+mIUmyx4JTGq+xfOgkWVbuXRB0E1HHj9Pyqp6vY9l0qlGUHx9ZjJsyZIbJKoLJQWTefP8aU1hhkZfAfM0tNaZ5NWk4o2RypOb0AiAA5QmfHhQFCHMKPyLvRHkIHP4SwKX+W7imAk+k4fRtwo6VnGejfDzgO1UC1o5WRM6jp9hlVUtp7wecYzNxHzrJoU4kokxzpggV74G6C8",
+      "note": "Server identity public key; not a TLS certificate and not a private key. Reuse links server configurations, not necessarily an operator."
+    },
+    "extracted_file_manifest": [
+      {
+        "cabinet_name": "ScreenConnect.ClientService.dll",
+        "installed_name": "ScreenConnect.ClientService.dll",
+        "size": 68096,
+        "sha256": "319ba24115e64ea4b714caf4e88d3d5a658defd51d714c2291b9758466925281"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsBackstageShell.exe",
+        "installed_name": "ScreenConnect.WindowsBackstageShell.exe",
+        "size": 61208,
+        "sha256": "1404090db3128de503ba4d991a960c7c1bc3b910a62d06ecf7e7081a2fcf11b9"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsFileManager.exe",
+        "installed_name": "ScreenConnect.WindowsFileManager.exe",
+        "size": 81688,
+        "sha256": "13f8cfe4648b807a0cbddd653c75254b60d1951e11e715f4e5a1a2c9ab29360b"
+      },
+      {
+        "cabinet_name": "ServiceExeWithService",
+        "installed_name": "ScreenConnect.ClientService.exe",
+        "size": 95512,
+        "sha256": "f048400c23add8c75abe189393d33c873c02c74eeaf43d47b950c8d643763b35"
+      },
+      {
+        "cabinet_name": "ServiceExeWithoutService",
+        "installed_name": "ScreenConnect.ClientService.exe",
+        "size": 95512,
+        "sha256": "f048400c23add8c75abe189393d33c873c02c74eeaf43d47b950c8d643763b35"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsAuthenticationPackage.dll",
+        "installed_name": "ScreenConnect.WindowsAuthenticationPackage.dll",
+        "size": 260168,
+        "sha256": "a5b8f0070201e4f26260af6a25941ea38bd7042aefd48cd68b9acf951fa99ee5"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsCredentialProvider.dll",
+        "installed_name": "ScreenConnect.WindowsCredentialProvider.dll",
+        "size": 857088,
+        "sha256": "36ad3b4858ee84fd2a73522a9ad25d177f492a65e1cbc6630169dc820dc2b63d"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsClient.exe",
+        "installed_name": "ScreenConnect.WindowsClient.exe",
+        "size": 608024,
+        "sha256": "b80d07610b81bddb3d7f30a207a2e134b559e06b8440598a926f3a9c1d439218"
+      },
+      {
+        "cabinet_name": "ScreenConnect.Client.dll",
+        "installed_name": "ScreenConnect.Client.dll",
+        "size": 197120,
+        "sha256": "6526705b685c2f221a6675118c73cba98c47d948169d81ea4544c3e3336b8f2b"
+      },
+      {
+        "cabinet_name": "ScreenConnect.Core.dll",
+        "installed_name": "ScreenConnect.Core.dll",
+        "size": 550912,
+        "sha256": "b8100e5ab07983cbf82d721cf719576ca3f60e352628dcaabd42d428011fdedf"
+      },
+      {
+        "cabinet_name": "ScreenConnect.Windows.dll",
+        "installed_name": "ScreenConnect.Windows.dll",
+        "size": 1729024,
+        "sha256": "da29455a64858fda773319c32c0a6cd40edbe8042ed005aa2befb8a4f0fb0522"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsClient.exe.config",
+        "installed_name": "ScreenConnect.WindowsClient.exe.config",
+        "size": 266,
+        "sha256": "87c640d3184c17d3b446a72d5f13d643a774b4ecc7afbedfd4e8da7795ea8077"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsBackstageShell.exe.config",
+        "installed_name": "ScreenConnect.WindowsBackstageShell.exe.config",
+        "size": 266,
+        "sha256": "87c640d3184c17d3b446a72d5f13d643a774b4ecc7afbedfd4e8da7795ea8077"
+      },
+      {
+        "cabinet_name": "ScreenConnect.WindowsFileManager.exe.config",
+        "installed_name": "ScreenConnect.WindowsFileManager.exe.config",
+        "size": 266,
+        "sha256": "87c640d3184c17d3b446a72d5f13d643a774b4ecc7afbedfd4e8da7795ea8077"
+      },
+      {
+        "cabinet_name": "app.config",
+        "installed_name": "app.config",
+        "size": 508,
+        "sha256": "779c074d07a35de132ade25762da935077cf6a7da2c3812cc4f432d5dad73394"
+      },
+      {
+        "cabinet_name": "Client.en-US.resources",
+        "installed_name": "Client.en-US.resources",
+        "size": 50128,
+        "sha256": "6a000a67799a071883b6e25f86d91c2c513aae0b34b3643be77e5b889335fb95"
+      },
+      {
+        "cabinet_name": "Client.resources",
+        "installed_name": "Client.resources",
+        "size": 29608,
+        "sha256": "95b299c8c163731707e8134946059a28c668c2b65b48f57eac2847dbe4beb63e"
+      },
+      {
+        "cabinet_name": "system.config",
+        "installed_name": "system.config",
+        "size": 941,
+        "sha256": "ed3caae4c53c7fb7519a1c86b7b17b7a53762771ea62606114aa1e56251899cb"
+      }
+    ]
+  },
+  "local_signature_observations": [
+    {
+      "File": "sample.msi",
+      "SHA256": "852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775",
+      "Status": "NotSigned",
+      "Signer": null,
+      "Thumbprint": null
+    },
+    {
+      "File": "ScreenConnect.WindowsClient.exe",
+      "SHA256": "b80d07610b81bddb3d7f30a207a2e134b559e06b8440598a926f3a9c1d439218",
+      "Status": "Valid",
+      "Signer": "CN=\"Connectwise, LLC\", O=\"Connectwise, LLC\", L=Tampa, S=Florida, C=US",
+      "Thumbprint": "4C2272FBA7A7380F55E2A424E9E624AEE1C14579"
+    },
+    {
+      "File": "ServiceExeWithService",
+      "SHA256": "f048400c23add8c75abe189393d33c873c02c74eeaf43d47b950c8d643763b35",
+      "Status": "Valid",
+      "Signer": "CN=\"Connectwise, LLC\", O=\"Connectwise, LLC\", L=Tampa, S=Florida, C=US",
+      "Thumbprint": "4C2272FBA7A7380F55E2A424E9E624AEE1C14579"
+    },
+    {
+      "File": "ScreenConnect.WindowsAuthenticationPackage.dll",
+      "SHA256": "a5b8f0070201e4f26260af6a25941ea38bd7042aefd48cd68b9acf951fa99ee5",
+      "Status": "Valid",
+      "Signer": "CN=\"ConnectWise, LLC\", O=\"ConnectWise, LLC\", L=Tampa, S=Florida, C=US, SERIALNUMBER=6401717, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+      "Thumbprint": "49020C4AF94C9B4A0753BD77DC9E22D040EEBE51"
+    }
+  ],
+  "malwarebazaar_and_triage_first_collection": {
+    "collected_utc": "2026-09-29T17:12:21.518108+00:00",
+    "collection_method": "Read existing public reports through browser UI/DOM; manually transcribed relevant observations. No sample execution, upload, or new sandbox submission.",
+    "malwarebazaar": {
+      "source": "https://bazaar.abuse.ch/sample/852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775/",
+      "sha256": "852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775",
+      "sha1": "d1b0dd855fafc639421fcc0db76c94d30d0f96f5",
+      "md5": "52e6020d1f22ae92efef1eac9e106567",
+      "filename": "ScreenConnect.ClientSetup.msi",
+      "size_bytes": 9957376,
+      "signature_label": "ConnectWise",
+      "first_seen_utc": "2026-09-29T14:11:32Z",
+      "last_seen_display": "Never",
+      "reporter": "abuse_ch",
+      "tags": [
+        "ConnectWise",
+        "msi",
+        "rmm",
+        "screenconnect"
+      ],
+      "delivery_method": "web_download",
+      "origin_country": "SE",
+      "origin_country_interpretation": "Submission origin, not operator location; semantics documented at https://bazaar.abuse.ch/api/",
+      "displayed_vendor_detection_count": 8,
+      "references": {
+        "urlhaus": "https://urlhaus.abuse.ch/url/3924958/",
+        "cape": "https://www.capesandbox.com/analysis/89657/",
+        "triage": "https://tria.ge/reports/260929-rhzctas1hy/",
+        "joe": "https://www.joesandbox.com/analysis/1979507",
+        "threatray": "https://reports.threatray.com/50201331-1cbf-4b0b-b6a9-54a1cec29e23",
+        "filescan": "https://www.filescan.io/uploads/6abbc74187f490f90ec27064/reports/a7ee399c-c0bc-4a79-996b-19d645c8d28f/overview"
+      },
+      "comments": "No comments found",
+      "vendor_labels": {
+        "Hatching Triage": "Malicious; score 8/10",
+        "Joe Sandbox": "ScreenConnect Tool",
+        "Threatray": "ADMINTOOL_ScreenConnect; malicious",
+        "FileScan.IO": "Likely Malicious",
+        "Hybrid Analysis": "Unknown",
+        "Kaspersky OpenTIP": "Adware",
+        "Malva.RE": "inconclusive",
+        "ReversingLabs": "ByteCode-MSIL.PUA.ConnectWise"
+      },
+      "yara_rule_names": [
+        "DebuggerCheck__API",
+        "DetectEncryptedVariants",
+        "INDICATOR_RMM_ConnectWise_ScreenConnect",
+        "NET",
+        "RANSOMWARE"
+      ]
+    },
+    "triage": {
+      "source": "https://tria.ge/260929-rhzctas1hy/behavioral1",
+      "sha256": "852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775",
+      "submitted_display_utc": "2026-09-29 14:12",
+      "platform": "windows10-2004_x64",
+      "score": 8,
+      "service_process": {
+        "name": "ScreenConnect.ClientService.exe",
+        "pid": 4040,
+        "path": "C:\\Program Files (x86)\\ScreenConnect Client (ba544f8cf7454a89)\\ScreenConnect.ClientService.exe",
+        "relay_host": "64.112.84.195",
+        "relay_port": 8041,
+        "session_type": "Access",
+        "participant_type": "Guest",
+        "sandbox_session_guid": "3e2a12b4-1d60-491f-9cb3-9312d8e302c5",
+        "note": "Session GUID was observed in this sandbox run and is not a campaign-wide or victim-wide IOC."
+      },
+      "flow": {
+        "source": "https://tria.ge/260929-rhzctas1hy/behavioral1/analog?flow=41",
+        "id": 41,
+        "protocol": "tcp",
+        "local_addr": "10.127.0.8",
+        "local_port": 50004,
+        "remote_addr": "64.112.84.195",
+        "remote_port": 8041,
+        "process_pid_from_report": 4040,
+        "process_internal_id": 110,
+        "flow_start_time_raw": 27552,
+        "flow_end_time_raw": 152064,
+        "tx_bytes": 9777,
+        "tx_packets": 16,
+        "rx_bytes": 720,
+        "rx_packets": 11,
+        "interpretation": "Bidirectional TCP traffic recorded by sandbox; application-level authentication, operator interaction, and victim connections not established."
+      },
+      "other_network": {
+        "host": "c.pki.goog",
+        "ip": "142.250.140.94",
+        "port": 80,
+        "urls": [
+          "http://c.pki.goog/r/r1.crl",
+          "http://c.pki.goog/wr2/oBFYYahzgVI.crl"
+        ],
+        "classification": "Certificate revocation infrastructure; excluded from malicious IOC list."
+      },
+      "revocation_detection": {
+        "title": "Signed with revoked ConnectWise certificate",
+        "rule": "revoked_cert_connectwise",
+        "type": "YARA rule match reported by Triage; not an independent CA revocation check in this investigation",
+        "affected_files": [
+          {
+            "file": "ScreenConnect.ClientService.exe",
+            "sha256": "f048400c23add8c75abe189393d33c873c02c74eeaf43d47b950c8d643763b35",
+            "resource": "behavioral1/files/0x0007000000024334-69.dat"
+          },
+          {
+            "file": "ScreenConnect.WindowsCredentialProvider.dll",
+            "sha256": "36ad3b4858ee84fd2a73522a9ad25d177f492a65e1cbc6630169dc820dc2b63d",
+            "resource": "behavioral1/files/0x0007000000024331-104.dat"
+          },
+          {
+            "file": "ScreenConnect.WindowsClient.exe",
+            "sha256": "b80d07610b81bddb3d7f30a207a2e134b559e06b8440598a926f3a9c1d439218",
+            "resource": "behavioral1/files/0x000700000002432f-112.dat"
+          }
+        ],
+        "additional_memory_match": "behavioral1/memory/4040-105-0x0000000004830000-0x0000000004905000-memory.dmp",
+        "local_comparison": "Earlier Get-AuthenticodeSignature returned Valid for the matching service and Windows client binaries. Preserve that result as local tool output; do not interpret it as independently verified current certificate revocation status."
+      }
+    },
+    "vendor_revocation_context": {
+      "source": "https://www.connectwise.com/blog/2025/new-era-remote-access-security",
+      "summary": "ConnectWise documents 2025 signing-certificate revocations and architectural changes separating configuration from signed binaries. This does not establish operator identity or independently verify the precise certificate flagged in this sample."
+    },
+    "limitations": [
+      "URLhaus detail remained behind a separate CAPTCHA; reference link recorded, its contents not claimed as verified.",
+      "Joe Sandbox detail showed a browser security check; not used as direct corroboration.",
+      "CAPE detail could not be retrieved through the web tool; not used as direct corroboration.",
+      "Generic ransomware/VSS and YARA labels do not establish encryption, extortion, or a ransomware group.",
+      "No new threat-actor identity or additional malicious host established."
+    ],
+    "subsequent_update": {
+      "utc": "2026-09-29T18:22:52.045236+00:00",
+      "evidence_file": "deeper-report-evidence.json",
+      "note": "CAPE report became accessible and its memory extracts were retrieved. Prior access-limit entries below describe the earlier collection, not the current CAPE status."
+    }
+  },
+  "deeper_report_collection": {
+    "case": "SC-852374df",
+    "collected_utc": "2026-09-29T18:22:52.045236+00:00",
+    "sample_sha256": "852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775",
+    "triage_second_run": {
+      "report": "https://tria.ge/260929-rhzctas1hy/behavioral2",
+      "flow_url": "https://tria.ge/260929-rhzctas1hy/behavioral2/analog?flow=12",
+      "os": "Windows 11 LTSC 2024 x64",
+      "kernel_duration_seconds": 148,
+      "network_duration_seconds": 128,
+      "service_pid": 1148,
+      "installation_session_guid": "ac50d38a-51af-411e-b19e-82245950c6bf",
+      "source": "10.127.0.235:49945",
+      "destination": "64.112.84.195:8041",
+      "protocol": "tcp",
+      "tx_bytes": 12759,
+      "tx_packets": 17,
+      "rx_bytes": 707,
+      "rx_packets": 11,
+      "flow_start_raw": 32626,
+      "flow_end_raw": 96727,
+      "flow_internal_process_id": 101,
+      "network_summary": {
+        "requests": 0,
+        "udp": 0,
+        "tcp": 1
+      },
+      "interpretation": "Second execution environment in the same submitted Triage report; not an independent incident. Bidirectional traffic, not proof of operator control."
+    },
+    "cape": {
+      "report": "https://www.capesandbox.com/analysis/89657/",
+      "analysis_id": 89657,
+      "sample_sha256": "852374df118e93ba75d10d516237ebee894d435487c58bb35f436aa387cfd775",
+      "started_displayed": "2026-09-29 14:15:27",
+      "completed_displayed": "2026-09-29 14:19:25",
+      "duration_seconds": 238,
+      "clock_caveat": "CAPE summary times and API-call times differ by roughly one hour. Preserve displayed values; do not merge into UTC incident chronology without clock normalization.",
+      "machine": "win10-10 KVM",
+      "service_pid": 4140,
+      "windows_client_pid": 3260,
+      "installation_session_guid": "e5203baf-9236-4d24-8a5b-e28dec2b6bd8",
+      "runrole_guid": "519ce2f1-a7c2-4519-9310-af7951a394b4",
+      "relay": "64.112.84.195:8041",
+      "relay_result": "CAPE dead_connect signature lists six service API call references to this one destination; no successful application exchange established by this run.",
+      "cookie_alert_evidence": "C:\\Users\\Louise\\AppData\\Local\\Microsoft\\Windows\\INetCookies",
+      "cookie_alert_limit": "Directory access alone does not demonstrate cookie theft or exfiltration.",
+      "runtime_registry_write": "HKLM\\SYSTEM\\ControlSet001\\Services\\ScreenConnect Client (ba544f8cf7454a89)\\ImagePath",
+      "dropped_config": {
+        "name": "user.config",
+        "size_bytes": 561,
+        "sha256": "abb9fb9d43172f64c1b93a3dcb99956687e5883a14385e3eccced3fc8cfe5af7",
+        "path": "C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\ScreenConnect Client (ba544f8cf7454a89)\\user.config",
+        "setting": "HostToAddressMap",
+        "value": "64.112.84.195=64.112.84.195-9%2f29%2f2026%201%3a19%3a09%20PM",
+        "time_caveat": "Sandbox-local cache timestamp, not victim installation time."
+      },
+      "memory_pe": {
+        "sha256": "319ba24115e64ea4b714caf4e88d3d5a658defd51d714c2291b9758466925281",
+        "size_bytes": 68096,
+        "cape_label": "Unpacked PE Image: 32-bit DLL",
+        "process": "ScreenConnect.WindowsClient.exe",
+        "pid": 3260,
+        "original_filename": "ScreenConnect.ClientService.dll",
+        "version": "25.2.4.9229",
+        "pdb": "C:\\builds\\cc\\cwcontrol\\Product\\ClientService\\obj\\Release\\ScreenConnect.ClientService.pdb",
+        "local_extracted_dll_sha256": "319ba24115e64ea4b714caf4e88d3d5a658defd51d714c2291b9758466925281",
+        "interpretation": "Exact byte identity to DLL packaged in original MSI; not a newly established second stage."
+      },
+      "memory_data": [
+        {
+          "sha256": "aed8dc9fc2ed1ef9b4d33dee1369f7b6af4bc7f0bcebc30a5074ab6cd9fe9229",
+          "size_bytes": 4522,
+          "archive_member": "aed8dc9fc2ed1ef9b4d33dee1369f7b6af4bc7f0bcebc30a5074ab6cd9fe9229",
+          "prefix_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": [
+            "C:\\Program Files (x86)\\ScreenConnect Client (ba544f8cf7454a89)\\ScreenConnect.ClientService.exe"
+          ],
+          "source": "https://www.capesandbox.com/file/CAPEzip/89657/aed8dc9fc2ed1ef9b4d33dee1369f7b6af4bc7f0bcebc30a5074ab6cd9fe9229/",
+          "method": "Downloaded existing archive; AES ZIP decoded as data; SHA-256 verified; ASCII and UTF-16LE strings of 6+ characters extracted. Never executed.",
+          "malicious_ioc": false,
+          "interpretation": "CAPE labels service-to-WindowsClient injection/data. Readable content contains the existing ScreenConnect.ClientService.exe path; not proof of a separate RAT."
+        },
+        {
+          "sha256": "27cb2d96875ff872acff9f7897187fe711adb94d30f0ee48b70235d9b5bb89b0",
+          "size_bytes": 15155,
+          "archive_member": "27cb2d96875ff872acff9f7897187fe711adb94d30f0ee48b70235d9b5bb89b0",
+          "prefix_hex": "00000000000000000000fa6ef97f0000000001000000000001000000000000000000000000000000000000000000000080000000000100003c000000012f0d002f95480000002a8540000000252538000000201530000000044200000000002a",
+          "strings": [],
+          "source": "https://www.capesandbox.com/file/CAPEzip/89657/27cb2d96875ff872acff9f7897187fe711adb94d30f0ee48b70235d9b5bb89b0/",
+          "method": "Downloaded existing archive; AES ZIP decoded as data; SHA-256 verified; ASCII and UTF-16LE strings of 6+ characters extracted. Never executed.",
+          "malicious_ioc": false,
+          "interpretation": "Memory data; role unresolved. No additional network destination recovered by this limited static string inspection."
+        },
+        {
+          "sha256": "3a74538c4100ab397e7089b9b174e7de81646ef832f27e91b0ff9e42a2ba974f",
+          "size_bytes": 5653,
+          "archive_member": "3a74538c4100ab397e7089b9b174e7de81646ef832f27e91b0ff9e42a2ba974f",
+          "prefix_hex": "0000000000003b03003000000000000018003b0308000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": [
+            "sq4(tq",
+            "4(tq<(tq",
+            "<(tqD(tq",
+            "D(tqh(tq",
+            "h(tqt(tq",
+            "(tq((tq",
+            "(tqL(tq",
+            "sq4(tq",
+            "sqD(tq",
+            "sq4(tq",
+            "sq4(tq",
+            "sqTcaq"
+          ],
+          "source": "https://www.capesandbox.com/file/CAPEzip/89657/3a74538c4100ab397e7089b9b174e7de81646ef832f27e91b0ff9e42a2ba974f/",
+          "method": "Downloaded existing archive; AES ZIP decoded as data; SHA-256 verified; ASCII and UTF-16LE strings of 6+ characters extracted. Never executed.",
+          "malicious_ioc": false,
+          "interpretation": "Memory data; role unresolved. No additional network destination recovered by this limited static string inspection."
+        },
+        {
+          "sha256": "ef5be659c1606555d993a8a3f6088abe1d5c3e787f68ca2f86f322de955aed36",
+          "size_bytes": 308,
+          "archive_member": "ef5be659c1606555d993a8a3f6088abe1d5c3e787f68ca2f86f322de955aed36",
+          "prefix_hex": "433a5c797a383934686c755c646c6c5c6b7941486f4e2e646c6c0000f0044ff2f97f0000f05b4ef2f97f000000007e000000000040534883ec20488bd9488b4910ff134885c0750c488b43084883c4205b48ffe033c04883c4205bc3cccccccc",
+          "strings": [
+            "C:\\yz894hlu\\dll\\kyAHoN.dll"
+          ],
+          "source": "https://www.capesandbox.com/file/CAPEzip/89657/ef5be659c1606555d993a8a3f6088abe1d5c3e787f68ca2f86f322de955aed36/",
+          "method": "Downloaded existing archive; AES ZIP decoded as data; SHA-256 verified; ASCII and UTF-16LE strings of 6+ characters extracted. Never executed.",
+          "malicious_ioc": false,
+          "interpretation": "Contains a randomized DLL path under C:\\yz894hlu\\dll. Consistent with CAPE monitor instrumentation; inference, not conclusively attributed without the run monitor log. Excluded from malware IOCs."
+        },
+        {
+          "sha256": "bf9a397c8886f465fcf8734ad97853bb6a0f553fe869642f6dbeba18d5854242",
+          "size_bytes": 295,
+          "archive_member": "bf9a397c8886f465fcf8734ad97853bb6a0f553fe869642f6dbeba18d5854242",
+          "prefix_hex": "433a5c797a383934686c755c646c6c5c50474256417a2e646c6c00d00be37510e0e2750000b900558bec568b7508ff76088b06ffd085c0750a8b4604ffd05e5dc2040033c05e5dc20400cccccccccccccccccccccccccc558bec83ec28a10430",
+          "strings": [
+            "C:\\yz894hlu\\dll\\PGBVAz.dll"
+          ],
+          "source": "https://www.capesandbox.com/file/CAPEzip/89657/bf9a397c8886f465fcf8734ad97853bb6a0f553fe869642f6dbeba18d5854242/",
+          "method": "Downloaded existing archive; AES ZIP decoded as data; SHA-256 verified; ASCII and UTF-16LE strings of 6+ characters extracted. Never executed.",
+          "malicious_ioc": false,
+          "interpretation": "Contains a randomized DLL path under C:\\yz894hlu\\dll. Consistent with CAPE monitor instrumentation; inference, not conclusively attributed without the run monitor log. Excluded from malware IOCs."
+        },
+        {
+          "sha256": "d3915debafa4874dcb97680d1fd1d7a8ea6bb9ec5726740cffd7d46a03c15f2b",
+          "size_bytes": 102,
+          "archive_member": "d3915debafa4874dcb97680d1fd1d7a8ea6bb9ec5726740cffd7d46a03c15f2b",
+          "prefix_hex": "d8ffffffffffffff0800000000000000010000000000000000020e03380000006801d7070c000000d85db9ccf97f00000010b7ccf97f0000084ad0ccf97f0000f82ab7ccf97f0000008e0b000000000000000000000000007000cfccf47f0000",
+          "strings": [],
+          "source": "https://www.capesandbox.com/file/CAPEzip/89657/d3915debafa4874dcb97680d1fd1d7a8ea6bb9ec5726740cffd7d46a03c15f2b/",
+          "method": "Downloaded existing archive; AES ZIP decoded as data; SHA-256 verified; ASCII and UTF-16LE strings of 6+ characters extracted. Never executed.",
+          "malicious_ioc": false,
+          "interpretation": "Memory data; role unresolved. No additional network destination recovered by this limited static string inspection."
+        }
+      ]
+    },
+    "instrumentation_sources": [
+      "https://github.com/kevoreilly/CAPEv2/blob/master/analyzer/windows/lib/common/constants.py",
+      "https://github.com/kevoreilly/CAPEv2/blob/master/analyzer/windows/lib/api/process.py"
+    ],
+    "limitations": [
+      "URLhaus verification was authorized and attempted, but did not complete; its detail remains unverified.",
+      "Triage PCAP download requires registration; no account created and no PCAP acquired there.",
+      "The six CAPE memory-data extracts were string-inspected, not fully reverse engineered; encrypted or encoded configuration is not excluded.",
+      "CAPE public source explains possible instrumentation; the exact deployed sandbox version and monitor log were not obtained.",
+      "No victim endpoint telemetry or original lure provided; no operator actions or threat-group identity established."
+    ]
+  },
+  "publication_notes": [
+    "First-collection access limitations are historical. The later deeper-report collection supersedes the earlier CAPE access limitation.",
+    "Sandbox-generated usernames, GUIDs, paths, PIDs, and source IPs are run context, not victim identities or general malicious IOCs.",
+    "Local signature status was not an independently verified CA revocation check.",
+    "Readable-string inspection does not exclude encrypted or encoded configuration.",
+    "No source artifact in this package was executed locally."
+  ]
+}
