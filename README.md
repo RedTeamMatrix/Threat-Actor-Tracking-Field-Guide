@@ -2,13 +2,13 @@
 
 A practical field guide for investigating major security incidents, tracking attacker activity, and writing evidence-based attribution assessments.
 
-This repository contains a reusable guide, a fictional exercise, and a real sample-analysis case study:
+This repository contains a reusable guide and a fictional exercise, with a link to a separate real sample-analysis case study:
 
 | Document | Purpose |
 |---|---|
 | [Blank field guide](docs/field-guide.md) | Reusable investigation workflow, checklists, decision cards, evidence tables, and final report template |
 | [Completed tabletop example](examples/completed-tabletop-example.md) | Fictional incident showing how the guide works from initial access through reporting |
-| [ScreenConnect MSI case study](case-studies/2026-09-29-screenconnect-852374df/README.md) | Real sample and existing public reports: delivery host, configured relay, runtime artifacts, and evidence limits |
+| [ScreenConnect MSI case study](https://github.com/RedTeamMatrix/ScreenConnect-MSI-Infrastructure-Analysis) | Real sample and existing public reports: delivery host, configured relay, runtime artifacts, and evidence limits |
 
 ## What the guide covers
 
